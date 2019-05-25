@@ -1,0 +1,49 @@
+#!/bin/bash
+
+
+#==================================================================================#
+# findCompilingLines                                                               #
+#    Author:    Quentin Jensen                                                     #
+#                                                                                  #
+# OVERVIEW:                                                                        #
+#    finds all makefiles in a directory, and outputs all lines of code that        #
+#    are actually compiling something (denoted by a "-o"), output to a file        #
+#                                                                                  #
+#==================================================================================#
+
+
+pathToMakefiles=""
+
+unset GREP_OPTIONS #supress the stupid "ahhh grep options is deprecated wahhhh"
+
+#find all makefiles with a compilation line (denoted by "CC" or "CXX" or "COMP")
+#in the specified directory
+for i in `find $1 -name '*akefile'`; do
+	if  grep -q "CC" $i  ||  grep -q "CXX" $i || grep -q "COMP" $i; then
+		pathToMakefiles+=" $i"
+	fi
+	found=0
+done
+
+for i in `find $1 -name 'Make*'`; do
+	if  grep -q "CC" $i  ||  grep -q "CXX" $i || grep -q "COMP" $i; then
+		pathToMakefiles+=" $i"
+	fi
+	found=0
+done
+
+
+
+
+if [ -z "$pathToMakefiles" ]; then
+	echo "no valid Makefile was found"
+	exit 1
+fi
+
+for path in $pathToMakefiles; do 
+	echo $path >> compilingLines.txt
+	grep -rnw $path -e "-o" >> compilingLines.txt
+done
+
+echo "done"
+

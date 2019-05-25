@@ -1,0 +1,114 @@
+#!/bin/bash
+
+#==================================================================================#
+# CALIPERIZER                                                                      #
+#    Author:    Quentin Jensen                                                     #
+#                                                                                  #
+# USAGE: ./caliperizer path                                                        #
+#    where the path is the path to the project's directory that you want to build. #
+#                                                                                  #
+# OVERVIEW (current state):                                                        #
+#    *This script finds all makefiles in the specified directory, (cwd by default) #
+#   and adds all flags needed to compile caliper. These flags are added to all     #
+#   lines that include "-o", indicating that the line is compiling.                #
+#                                                                                  #
+# OVERVIEW (once this is completed)                                                #
+#    *These flags are the paths specified in config.yaml                           #
+#    *It then annotates all source-code files, then builds the app.                #
+#==================================================================================#
+
+pathToMakefiles=""
+pathToCaliper=""
+pathToAllBins=""
+compilingLines=""
+found=0
+
+unset GREP_OPTIONS #supress the stupid "ahhh grep options is deprecated wahhhh"
+
+#find all makefiles with a compilation line (denoted by "CC" or "CXX" or "COMP")
+#in the specified directory
+for i in `find $1 -name '*akefile'`; do
+	if  grep -q "CC" $i  ||  grep -q "CXX" $i || grep -q "COMP" $i; then
+		pathToMakefiles+=" $i"
+		found=1
+	fi
+	found=0
+done
+
+for i in `find $1 -name 'Make*'`; do
+	if  grep -q "CC" $i  ||  grep -q "CXX" $i || grep -q "COMP" $i; then
+		pathToMakefiles+=" $i"
+		found=1
+	fi
+	found=0
+done
+
+
+
+
+if [ -z "$pathToMakefiles" ]; then
+	echo "no valid Makefile was found"
+	exit 1
+fi
+
+
+
+	#get user-set environment variables and put them all into pathToCaliper and pathToAllBins
+	if [[ -z "${PATH_TO_CALIPER_INCLUDE}" ]]; then
+		echo "please define an environment variable, PATH_TO_CALIPER_INCLUDE, as the path to caliper's /include directory"
+	else
+		pathToCaliper="$PATH_TO_CALIPER_INCLUDE"
+	fi
+	
+	if [[ -z "${PATH_TO_GOTCHA}" ]]; then
+		echo "please define an environment variable, PATH_TO_GOTCHA, as the path to gotcha's /bin or /bin64 directory"
+	else
+		pathToAllBins=" $pathToAllBins -L${PATH_TO_GOTCHA}  -lgotcha "
+	fi
+	
+	if [[ -z "${PATH_TO_PAPI}" ]]; then
+		echo "please define an environment variable, PATH_TO_PAPI, as the path to papi's /bin or /bin64 directory"
+	else
+		pathToAllBins=" $pathToAllBins -L${PATH_TO_PAPI}  -lpapi "
+	fi
+	
+	if [[ -z "${PATH_TO_LIBPFM}" ]]; then
+		echo "please define an environment variable, PATH_TO_LIBPFM, as the path to libpfm's /bin or /bin64 directory"
+	else
+		pathToAllBins=" $pathToAllBins -L${PATH_TO_LIBPFM}  -lpfm "
+	fi
+	
+	if [[ -z "${PATH_TO_CALIPER_BIN}" ]]; then
+		echo "please define an environment variable, PATH_TO_CALIPER_BIN, as the path to caliper's /bin or /bin64 directory"
+	else
+		pathToAllBins=" $pathToAllBins -L${PATH_TO_CALIPER_BIN}  -lcaliper "
+	fi
+
+
+
+
+
+#for each makefile found:
+#find all lines with a -o (this means it's a compiling line)
+#and append the paths to all caliper related libraries
+#to the end of the line
+	
+for path in $pathToMakefiles; do 
+	sed -i -e "s|.*-o.*|& -I$pathToCaliper $pathToAllBins|g" "$path"
+done
+
+
+# to be done by user:
+
+#	python ann_script.py
+#	make 
+#	export CALI_SERVICES_ENABLE=papi,recorder,trace
+#	export CALI_PAPI_COUNTERS=PAPI_TOT_CYC:PAPI_L2_TCA
+#	export CALI_RECORDER_FILENAME=output.cali
+	
+#	#run the app
+
+#	#cali-query output.cali -q "SELECT * FORMAT json(pretty)" > output.json 
+
+echo "done"
+
