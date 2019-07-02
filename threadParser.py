@@ -32,7 +32,7 @@ class myNode:
 		self.socket1 = socket(1)
 
 	def printN(self):
-		print "Socket\tThread\tCore"
+		print "Rank\tThread\tCore"
 		self.socket0.printThreads()
 		self.socket1.printThreads()	
 
@@ -42,17 +42,33 @@ class myNode:
 
 
 def parseNode(line):
-	nid = re.compile('on (nid.....)').search(line).group(1)
-	return nid
+	match = re.compile('on (nid.....)').search(line)
+	if match:
+		nid = match.group(1)
+		return nid
 	
 
 def parseLine(line):
-	rank = re.compile('rank (.)').search(line).group(1)
-	thread = re.compile('thread (\d[^,]|\d)').search(line).group(1)
-	rawCores = re.compile('affinity = (.*\d)').search(line).group(1)
+
+	if line[0]=='S':
+		print line
+		return
+
+	rank = -1
+	thread = -1
 	cores = []
-	for s in rawCores.split(','):
-		cores.append(s)
+
+	match = re.compile('rank (.)').search(line)
+	if match:
+		rank = match.group(1)
+	match = re.compile('thread (\d[^,]|\d)').search(line)
+	if match:
+		thread = match.group(1)
+	match = re.compile('affinity = (.*\d)').search(line)
+	if match:
+		rawCores = match.group(1)
+		for s in rawCores.split(','):
+			cores.append(s)
 
 	return (int(rank),int(thread), cores)	
 	
@@ -64,11 +80,12 @@ def parse(file):
 
 		for line in f:
 			info = parseLine(line)
-			if(info[0] == 0):
-				n.socket0.addThread(info[1], info[2])
-			else:
-				print info[0]
-				n.socket1.addThread(info[1], info[2])
+			if info:
+				if(info[0] == 0):
+					n.socket0.addThread(info[1], info[2])
+				else:
+					print info[0]
+					n.socket1.addThread(info[1], info[2])
 
 		return n
 
