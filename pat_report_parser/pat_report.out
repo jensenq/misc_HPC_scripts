@@ -1,0 +1,375 @@
+CrayPat/X:  Version 7.0.3 Revision 4a66e93  08/20/18 13:18:36
+
+Number of PEs (MPI ranks):    1
+                           
+Numbers of PEs per Node:      1
+                           
+Numbers of Threads per PE:   64
+                           
+Number of Cores per Socket:  16
+
+Execution start time:  Wed Jul 10 12:48:43 2019
+
+System name and speed:  nid00052  2.301 GHz (nominal)
+
+Intel Haswell    CPU  Family:  6  Model: 63  Stepping:  2
+
+DRAM: 128 GiB DDR4-2133 on 2.3 GHz nodes
+
+
+Current path to data file:
+  /global/homes/j/jensenq/Nyx/Exec/LyA/Nyx3d.intel.haswell.PROF.MPI.OMP.ex+29090-52s/ap2-files/000000.ap2   (RTS)
+
+
+Notes for table 1:
+
+  This table shows functions that have significant exclusive sample
+    hits, averaged across ranks.
+  For further explanation, see the "General table notes" below,
+    or use:  pat_report -v -O samp_profile ...
+
+Table 1:  Profile by Function
+
+Level,Samp%,Samp,Imb..Samp,Imb..Samp%,Group/Function/Thread=HIDE
+0,100.0%,5661.0,--,--,Total
+1,94.0%,5323.0,--,--,ETC
+2,77.2%,4372.0,303.7,6.9%,ETC/__kmp_wait_yield_4
+2,5.8%,331.0,48.7,14.5%,ETC/__kmp_eq_4
+2,2.7%,151.0,39.1,21.6%,ETC/__kmp_yield
+2,2.6%,149.0,280.0,78.0%,ETC/_INTERNAL_25_______src_kmp_barrier_cpp_a4bc975c::__kmp_hyper_barrier_gather
+1,5.7%,321.0,--,--,USER
+
+Notes for table 2:
+
+  This table shows functions that have the most significant exclusive
+    time, taking the maximum time across ranks and threads.
+  For further explanation, see the "General table notes" below,
+    or use:  pat_report -v -O profile_max ...
+
+Table 2:  Profile of maximum function times
+
+Level,Samp%,Samp,Imb..Samp,Imb..Samp%,Function/Thread=HIDE
+1,100.0%,4445.0,303.7,6.9%,__kmp_wait_yield_4
+1,14.3%,637.0,234.2,37.4%,_INTERNAL_25_______src_kmp_barrier_cpp_a4bc975c::__kmp_hyper_barrier_release
+1,10.6%,473.0,179.3,38.5%,pthread_cond_wait
+1,8.3%,368.0,280.0,78.0%,_INTERNAL_25_______src_kmp_barrier_cpp_a4bc975c::__kmp_hyper_barrier_gather
+1,7.7%,342.0,48.7,14.5%,__kmp_eq_4
+1,4.1%,184.0,39.1,21.6%,__kmp_yield
+1,1.3%,58.0,13.5,23.7%,eos_module_mp_iterate_ne_
+1,1.2%,53.0,21.2,40.6%,__kmp_acquire_queuing_lock
+1,1.2%,53.0,--,--,__kmp_internal_end_library
+
+===================  Observations and suggestions  ===================
+
+
+MFLOPS not available on Intel Haswell:
+
+    The document that specifies performance monitoring events for Intel
+    processors does not include events that could be used to compute a
+    count of floating point operations for Haswell processors: Intel 64
+    and IA-32 Architectures Software Developer's Manual, Order Number
+    253665-050US, February 2014.
+
+=========================  End Observations  =========================
+
+Notes for table 3:
+
+  This table shows functions, and line numbers within functions, that
+    have significant exclusive sample hits, averaged across ranks.
+  For further explanation, see the "General table notes" below,
+    or use:  pat_report -v -O samp_profile+src ...
+
+Table 3:  Profile by Group, Function, and Line
+
+Level,Samp%,Samp,Imb..Samp,Imb..Samp%,Group/Function/Source/Line/Thread=HIDE
+0,100.0%,5661.0,--,--,Total
+1,94.0%,5323.0,--,--,ETC
+2,77.2%,4372.0,303.7,6.9%,ETC/__kmp_wait_yield_4
+4,77.2%,4372.0,303.7,6.9%,ETC/__kmp_wait_yield_4/==NA==/line.0
+2,5.8%,331.0,48.7,14.5%,ETC/__kmp_eq_4
+4,5.8%,331.0,48.7,14.5%,ETC/__kmp_eq_4/==NA==/line.0
+2,2.7%,151.0,39.1,21.6%,ETC/__kmp_yield
+4,2.7%,151.0,39.1,21.6%,ETC/__kmp_yield/==NA==/line.0
+2,2.6%,149.0,280.0,78.0%,ETC/_INTERNAL_25_______src_kmp_barrier_cpp_a4bc975c::__kmp_hyper_barrier_gather
+4,2.6%,149.0,280.0,78.0%,ETC/_INTERNAL_25_______src_kmp_barrier_cpp_a4bc975c::__kmp_hyper_barrier_gather/==NA==/line.0
+1,5.7%,321.0,--,--,USER
+
+Notes for table 4:
+
+  This table shows HW performance counter data for the whole program,
+    averaged across ranks or threads, as applicable.
+  For further explanation, see the "General table notes" below,
+    or use:  pat_report -v -O hwpc ...
+
+Table 4:  Program HW Performance Counter Data
+
+Level,Thread.Time,UNHALTED_REFERENCE_CYCLES,CPU_CLK_THREAD_UNHALTED:THREAD_P,DTLB_LOAD_MISSES:WALK_DURATION,INST_RETIRED:ANY_P,RESOURCE_STALLS:ANY,OFFCORE_RESPONSE_0:ANY_REQUEST:L3_MISS_LOCAL,OFFCORE_RESPONSE_1:ANY_REQUEST:L3_MISS_REMOTE,CPU.CLK.Boost,Resource.stall.cycles./.Cycles,Memory.traffic.GBytes,Local.Memory.traffic.GBytes,Remote.Memory.traffic.GBytes,DTLB.Miss.Ovhd,Retired.Inst.per.Clock,Thread=HIDE
+0,57.726010,105449628534,121925388543,30748725,55873911743,5567721967,11957536,32844725,1.16,4.6%,2.87,0.77,2.10,30748725,0.46,Total
+
+Notes for table 5:
+
+  This table show the average time and number of bytes read from each
+    input file, taking the average over the number of ranks that read
+    from the file.  It also shows the number of read operations, and
+    average rates.
+  For further explanation, see the "General table notes" below,
+    or use:  pat_report -v -O read_stats ...
+
+Table 5:  File Input Stats by Filename
+
+Level,Avg.Read.Time.per.Reader.Rank,Avg.Read.MiBytes.per.Reader.Rank,Read.Rate.MiBytes/sec,Number.of.Reader.Ranks,Avg.Reads.per.Reader.Rank,Bytes/Call,File.Name=!x/^/(proc|sys)//PE=HIDE
+1,0.060231,15.999999,265.643282, 1,9.0,1864135.00,64sssss_20mpc.nyx
+1,0.001454,0.049948,34.344323, 1,11.0,4761.27,/global/u1/j/jensenq/Nyx/Exec/LyA/TREECOOL_middle
+1,0.000412,0.004458,10.810537, 1,1.0,4675.00,inputs
+1,0.000177,0.000028,0.156332, 1,2.0,14.50,/global/u1/j/jensenq/Nyx/Exec/LyA/probin
+
+Notes for table 6:
+
+  This table show the average time and number of bytes written to each
+    output file, taking the average over the number of ranks that
+    wrote to the file.  It also shows the number of write operations,
+    and average rates.
+  For further explanation, see the "General table notes" below,
+    or use:  pat_report -v -O write_stats ...
+
+Table 6:  File Output Stats by Filename
+
+Level,Avg.Write.Time.per.Writer.Rank,Avg.Write.MiBytes.per.Writer.Rank,Write.Rate.MiBytes/sec,Number.of.Writer.Ranks,Avg.Writes.per.Writer.Rank,Bytes/Call,File.Name=!x/^/(proc|sys)//PE=HIDE
+1,0.200823,8.000607,39.839098, 1,1.0,8389244.00,plt00015.temp/Level_0/Cell_D_00000
+1,0.139575,9.000000,64.481492, 1,16.0,589824.00,chk00000.temp/DM/Level_0/DATA_00000
+1,0.106862,9.000000,84.220927, 1,16.0,589824.00,plt00015.temp/DM/Level_0/DATA_00000
+1,0.063371,19.191406,302.841949, 1,1.0,20123648.00,chk00000.temp/Level_0/SD_0_New_MF_D_00000
+1,0.048845,19.191406,392.901204, 1,1.0,20123648.00,chk00015.temp/Level_0/SD_0_New_MF_D_00000
+1,0.048408,9.000000,185.919729, 1,16.0,589824.00,chk00015.temp/DM/Level_0/DATA_00000
+1,0.023077,4.797852,207.904406, 1,1.0,5030912.00,chk00000.temp/Level_0/SD_1_New_MF_D_00000
+1,0.018451,2.398926,130.014988, 1,1.0,2515456.00,chk00000.temp/Level_0/SD_2_New_MF_D_00000
+1,0.014874,4.797852,322.575784, 1,1.0,5030912.00,chk00015.temp/Level_0/SD_1_New_MF_D_00000
+1,0.014793,0.002362,0.159682, 1,93.0,26.63,plt00015.temp/the_parameters
+1,0.012201,0.003793,0.310868, 1,15.0,265.13,runlog
+1,0.010774,0.006417,0.595648, 1,94.0,71.59,plt00015.temp/job_info
+1,0.009670,0.006452,0.667169, 1,94.0,71.97,chk00015.temp/job_info
+1,0.009266,2.398926,258.881874, 1,1.0,2515456.00,chk00015.temp/Level_0/SD_2_New_MF_D_00000
+1,0.008170,0.006453,0.789774, 1,94.0,71.98,chk00000.temp/job_info
+1,0.006519,0.003351,0.514101, 1,1.0,3514.00,plt00015.temp/Level_0/Cell_H
+1,0.001381,0.000187,0.135327, 1,1.0,196.00,plt00015.temp/DM/Header
+1,0.001054,0.002125,2.016380, 1,1.0,2228.00,chk00015.temp/Header
+1,0.000940,0.000239,0.254631, 1,1.0,251.00,plt00015.temp/DM/Level_0/Particle_H
+1,0.000862,0.000057,0.066417, 1,1.0,60.00,chk00015.temp/FabArrayHeaders.txt
+1,0.000787,0.000728,0.924668, 1,1.0,763.00,plt00015.temp/Header
+1,0.000690,0.002380,3.450994, 1,2.0,1248.00,bl_prof/bl_prof_D_00000
+1,0.000659,0.000593,0.900354, 1,1.0,622.00,chk00015.temp/Level_0/SD_1_New_MF_H
+1,0.000643,0.000593,0.921967, 1,1.0,622.00,chk00000.temp/Level_0/SD_1_New_MF_H
+1,0.000534,0.055197,103.398221, 1,4017.0,14.41,stdout
+1,0.000484,0.000591,1.221096, 1,1.0,620.00,chk00000.temp/Level_0/SD_2_New_MF_H
+1,0.000282,0.005531,19.615900, 1,1.0,5800.00,bl_prof/bl_prof_H
+1,0.000248,0.000591,2.381967, 1,1.0,620.00,chk00015.temp/Level_0/SD_2_New_MF_H
+1,0.000239,0.000598,2.500790, 1,1.0,627.00,chk00015.temp/Level_0/SD_0_New_MF_H
+1,0.000201,0.001950,9.693595, 1,1.0,2045.00,chk00000.temp/Header
+1,0.000200,0.001371,6.846785, 1,21.0,68.48,mem_info.log
+1,0.000200,0.000598,2.992253, 1,1.0,627.00,chk00000.temp/Level_0/SD_0_New_MF_H
+1,0.000180,0.000015,0.084712, 1,1.0,16.00,chk00015.temp/CPUtime
+1,0.000169,0.000019,0.113164, 1,1.0,20.00,plt00015.temp/comoving_a
+1,0.000166,0.000057,0.344997, 1,1.0,60.00,chk00000.temp/FabArrayHeaders.txt
+1,0.000157,0.000239,1.525189, 1,1.0,251.00,chk00000.temp/DM/Level_0/Particle_H
+1,0.000155,0.000019,0.123206, 1,1.0,20.00,chk00015.temp/comoving_a
+1,0.000148,0.000015,0.102905, 1,1.0,16.00,chk00000.temp/CPUtime
+1,0.000136,0.000187,1.377380, 1,1.0,196.00,chk00015.temp/DM/Header
+1,0.000128,0.000187,1.458138, 1,1.0,196.00,chk00000.temp/DM/Header
+1,0.000120,0.000007,0.055624, 1,1.0,7.00,plt00015.temp/DM/precision
+1,0.000120,0.000008,0.063651, 1,1.0,8.00,chk00000.temp/comoving_a
+1,0.000119,0.000239,2.006591, 1,1.0,251.00,chk00015.temp/DM/Level_0/Particle_H
+
+Notes for table 7:
+
+  This table shows energy and power usage for the nodes with the
+    maximum, mean, and minimum usage, as well as the sum of usage over
+    all nodes.
+    Energy and power for accelerators is also shown, if applicable.
+  For further explanation, see the "General table notes" below,
+    or use:  pat_report -v -O program_energy ...
+
+Table 7:  Program energy and power usage (from Cray PM)
+
+Level,Node.Energy.(J),Node.Power.(W),Process.Time,Thread=HIDE
+0,16792, 290.808,57.742577,Total
+
+Notes for table 8:
+
+  This table shows values shown for HiMem calculated from information
+    in the /proc/self/numa_maps files captured near the end of the
+    program. It is the total size of all pages, including huge pages,
+    that were actually mapped into physical memory from both private
+    and shared memory segments.
+  For further explanation, see the "General table notes" below,
+    or use:  pat_report -v -O himem ...
+
+Table 8:  Memory High Water Mark by Numa Node
+
+Level,Process.HiMem.(MiBytes),HiMem.Numa.Node.0.(MiBytes),HiMem.Numa.Node.1.(MiBytes),Numanode
+1,718.0,377.4,340.6,numanode.0
+
+Notes for table 9:
+
+  This table shows memory traffic to local and remote memory for numa
+    nodes, taking for each numa node the maximum value across nodes.
+    It also shows the balance in memory traffic by showing the top 3
+    and bottom 3 node values.
+  For further explanation, see the "General table notes" below,
+    or use:  pat_report -v -O mem_bw ...
+
+Table 9:  Memory Bandwidth by Numanode
+
+Level,Memory.traffic.GBytes,Local.Memory.traffic.GBytes,Remote.Memory.traffic.GBytes,Thread.Time,Memory.traffic.GBytes./.Sec,Memory.Traffic./.Nominal.Peak,Numanode/Thread=HIDE
+1,24.80,6.23,18.58,57.726010,0.43,0.6%,numanode.0
+1,94.74,20.53,74.21,57.509899,1.65,2.4%,numanode.1
+
+Notes for table 10:
+
+  This table shows total wall clock time for the ranks with the
+    maximum, mean, and minimum time, as well as the average across
+    ranks.
+    It also shows maximum memory usage from /proc/self/numa_maps for
+    those ranks, and on average.  The usage is total size of all
+    pages, including huge pages, that were actually mapped into
+    physical memory from both private and shared memory segments.
+  For further explanation, see the "General table notes" below,
+    or use:  pat_report -v -O program_time ...
+
+Table 10:  Wall Clock Time, Memory High Water Mark
+
+Level,Process.Time,Process.HiMem.(MiBytes),Thread
+0,57.742577,718.0,Total
+1,57.742577,718.0,thread.0
+
+
+General table notes:
+
+    The default notes for a table is do not account for the effects
+    of additional command-line options, but the detailed notes
+    produced by the -v option do account for them.
+    
+    An imbalance metric in a line is based on values in main threads
+    across multiple ranks, or on values across all threads, as applicable.
+    
+    An imbalance percent in a line is relative to the maximum value
+    for that line across ranks or threads, as applicable.
+    
+
+========================  Additional details  ========================
+
+Experiment:  samp_cs_time
+
+Sampling interval:  10000 microsecs
+
+Original path to data file:
+  /global/u1/j/jensenq/Nyx/Exec/LyA/Nyx3d.intel.haswell.PROF.MPI.OMP.ex+29090-52s/xf-files   (RTS)
+
+Original program:
+  /global/u1/j/jensenq/Nyx/Exec/LyA/Nyx3d.intel.haswell.PROF.MPI.OMP.ex+orig
+
+Instrumented with:
+  pat_build -f -O lite-samples -Drtenv=PAT_RT_REPORT_METHOD=team \
+    -Drtenv=PAT_RT_REPORT_CLEANUP=skip \
+    Nyx3d.intel.haswell.PROF.MPI.OMP.ex+orig \
+    Nyx3d.intel.haswell.PROF.MPI.OMP.ex
+
+  Option file "lite-samples" contained:
+    -Drtenv=PAT_RT_PERFCTR=default_samp
+    -Drtenv=PAT_RT_EXPERIMENT=samp_cs_time
+    -Drtenv=PAT_RT_SAMPLING_MODE=3
+    -Dreport=y
+    -Drtenv=PAT_RT_REPORT_CMD=pat_report,-O,lite-samples,-s,summoner=rtl
+    -g upc
+    -g caf
+    -g mpi
+    -g shmem
+    -g syscall
+    -g io
+
+Instrumented program:
+  /global/u1/j/jensenq/Nyx/Exec/LyA/./Nyx3d.intel.haswell.PROF.MPI.OMP.ex
+
+Program invocation:
+  /global/u1/j/jensenq/Nyx/Exec/LyA/./Nyx3d.intel.haswell.PROF.MPI.OMP.ex inputs
+
+0Exit Status:  0 for 1 PE
+
+Thread start functions and creator functions:
+    63 threads:  _INTERNAL_26_______src_z_Linux_util_cpp_a90d2234::__kmp_launch_worker(void*) <- __kmp_create_worker
+     1 thread:  main
+
+Memory pagesize:  4 KiB
+
+Memory hugepagesize:  Not Available
+
+Programming environment:  INTEL
+
+Runtime environment variables:
+  CRAYPAT_ALPS_COMPONENT=/opt/cray/pe/perftools/7.0.3/sbin/pat_alps
+  CRAYPAT_COMPILER_OPTIONS=1
+  CRAYPAT_LD_LIBRARY_PATH=/opt/cray/pe/gcc-libs:/opt/cray/gcc-libs:/opt/cray/pe/perftools/7.0.3/lib64
+  CRAYPAT_LITE=lite-samples
+  CRAYPAT_OPTS_EXECUTABLE=sbin/pat-opts
+  CRAYPAT_ROOT=/opt/cray/pe/perftools/7.0.3
+  CRAYPE_VERSION=2.5.15
+  CRAY_FFTW_VERSION=3.3.8.1
+  CRAY_LIBSCI_VERSION=18.07.1
+  DVS_VERSION=0.9.0
+  FFTW_VERSION=3.3.8.1
+  GCC_VERSION=7.3.0
+  GNU_VERSION=7.3.0
+  INTEL_MAJOR_VERSION=18
+  INTEL_MINOR_VERSION=18
+  INTEL_VERSION=18.0.1.163
+  LIBSCI_VERSION=18.07.1
+  MODULE_VERSION=3.2.10.6
+  MODULE_VERSION_STACK=3.2.10.6
+  MPICH_ABORT_ON_ERROR=1
+  MPICH_DIR=/opt/cray/pe/mpt/7.7.3/gni/mpich-intel/16.0
+  MPICH_MPIIO_DVS_MAXNODES=32
+  PAT_BUILD_PAPI_BASEDIR=/opt/cray/pe/papi/5.6.0.3
+  PAT_REPORT_PRUNE_NAME=_cray$mt_execute_,_cray$mt_start_,__cray_hwpc_,f_cray_hwpc_,cstart,__pat_,pat_region_,PAT_,OMP.slave_loop,slave_entry,_new_slave_entry,_thread_pool_slave_entry,THREAD_POOL_join,__libc_start_main,_start,__start,start_thread,__wrap_,UPC_ADIO_,_upc_,upc_,__caf_,__pgas_,syscall,__device_stub
+  PAT_RT_EXPERIMENT=samp_cs_time
+  PAT_RT_PERFCTR=default_samp
+  PAT_RT_REPORT_CLEANUP=skip
+  PAT_RT_REPORT_CMD=pat_report,-O,lite-samples,-s,summoner=rtl
+  PAT_RT_REPORT_METHOD=team
+  PAT_RT_SAMPLING_MODE=3
+  PERFTOOLS_VERSION=7.0.3
+  PMI_CONTROL_PORT=63316
+  PMI_CRAY_NO_SMP_ORDER=0
+  PMI_GNI_COOKIE=724959232:1416429568
+  PMI_GNI_DEV_ID=0:0
+  PMI_GNI_LOC_ADDR=52:52
+  PMI_GNI_PTAG=11:12
+  PMI_NO_FORK=1
+
+Report time environment variables:
+    CRAYPAT_ROOT=/opt/cray/pe/perftools/7.0.3
+    PAT_REPORT_PRUNE_NAME=_cray$mt_execute_,_cray$mt_start_,__cray_hwpc_,f_cray_hwpc_,cstart,__pat_,pat_region_,PAT_,OMP.slave_loop,slave_entry,_new_slave_entry,_thread_pool_slave_entry,THREAD_POOL_join,__libc_start_main,_start,__start,start_thread,__wrap_,UPC_ADIO_,_upc_,upc_,__caf_,__pgas_,syscall,__device_stub
+
+Number of MPI control variables collected:  108
+
+  (To see the list, specify: -s mpi_cvar=show)
+
+Report command line options:  -s show_data=csv
+
+Operating system:
+  Linux 4.4.103-6.38_4.0.153-cray_ari_c #1 SMP Thu Nov 1 16:05:05 UTC 2018 (6ef8fef)
+
+Hardware performance counter events:
+0   UNHALTED_REFERENCE_CYCLES                      Unhalted reference cycles
+0   CPU_CLK_THREAD_UNHALTED:THREAD_P               Count core clock cycles whenever the clock signal on the specificcore is running (not halted):Cycles when thread is not halted
+0   DTLB_LOAD_MISSES:WALK_DURATION                 Data TLB load misses:Cycles when PMH is busy with page walks
+0   INST_RETIRED:ANY_P                             Number of instructions retired (Precise Event):Number of instructions retired. General Counter - architectural event
+0   RESOURCE_STALLS:ANY                            Cycles Allocation is stalled due to Resource Related reason:Cycles Allocation is stalled due to Resource Related reason
+0   OFFCORE_RESPONSE_0:ANY_REQUEST:L3_MISS_LOCAL   Offcore response event (must provide at least one request type andeither any_response or any combination of supplier + snoop):Request: combination of all request umasks:Supplier: counts L3 misses to local DRAM
+0   OFFCORE_RESPONSE_1:ANY_REQUEST:L3_MISS_REMOTE  Offcore response event (must provide at least one request type andeither any_response or any combination of supplier + snoop):Request: combination of all request umasks:Supplier: counts L3 misses to remote node
+
+
+=============================  Warnings  =============================
+
+
+    No .apa file with pat_build option suggestions was generated
+    because no samples appear to have been taken in USER functions.
+
